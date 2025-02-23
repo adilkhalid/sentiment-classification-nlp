@@ -1,0 +1,78 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Common IDE settings
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Logs and debug files
+logs/
+*.log
+debug.log
+
+# Data files (prevent committing datasets)
+data/
+*.csv
+*.json
+*.xlsx
+*.tsv
+*.parquet
+*.db
+*.sqlite
+
+# Machine learning models & results
+models/
+checkpoints/
+*.h5
+*.hdf5
+*.onnx
+*.pkl
+*.joblib
+*.pb
+*.tflite
+*.ckpt
+*.npy
+*.npz
+
+# TensorFlow / PyTorch files
+*.pt
+*.pth
+*.weights
+
+# Hugging Face Transformers cache
+~/.cache/huggingface/
+hf_cache/
+
+# Large files & artifacts
+wandb/
+mlruns/
+*.mlmodel
+*.pkl
+*.dat
+*.gz
+*.zip
+*.tar
+*.tar.gz
+
+# Docker & Conda
+*.dockerignore
+*.conda
+*.yml
+
+# Environment variables & secrets
+.env
+*.pem
+*.crt
+*.key

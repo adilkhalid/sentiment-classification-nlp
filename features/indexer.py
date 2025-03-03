@@ -4,7 +4,6 @@ from typing import List
 class IndexerFeatureExtractor:
     def __init__(self):
         self.objs_to_ints = {}
-        self.ints_to_objs = {}
 
     def vocab_size(self):
         return len(self.objs_to_ints)
@@ -14,7 +13,6 @@ class IndexerFeatureExtractor:
             if word not in self.objs_to_ints:
                 index = len(self.objs_to_ints)
                 self.objs_to_ints[word] = index
-                self.ints_to_objs[index] = word
 
     def extract_feature(self, sentence: List[str]):
         feature_vector = [0] * len(self.objs_to_ints)

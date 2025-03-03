@@ -35,3 +35,8 @@ class NGramFeatureExtractor:
             if ngram in self.ngram_to_index:
                 feature[self.ngram_to_index[ngram]] += 1  # Count occurrences
         return feature
+
+    def model_details(self):
+        return {"ngram_to_index": {str(k): v for k, v in self.ngram_to_index.items()},
+                "n": self.n,
+                "vocab_size": self.vocab_size}

@@ -1,9 +1,52 @@
+import random
+
 from data.dataloader import load_dataset
 from features.indexer import IndexerFeatureExtractor
 from features.n_gram_feature_extractor import NGramFeatureExtractor
 from features.one_hot_encoding import OneHotEncodingFeatureExtractor
+from features.tfidf import TFIDF
 from perceptron import Perceptron
-from utils import save_json_model
+from utils.model_io import save_json_model
+
+
+def train_with_tfidf():
+    tfidf = TFIDF()
+    dataset = load_dataset("../data/train.csv")
+
+    sentences = [sentence.split() for sentence, _ in dataset]
+    labels = [label for _, label in dataset]
+    tfidf.compute_idf(sentences)
+
+    lr = 0.01
+    epochs = 20
+    vocab_list = list(tfidf.idf.keys())  # Fixed word order
+    perceptron = Perceptron(len(vocab_list))
+    X_train = [
+        [tfidf.compute_tfidf(sentence).get(word, 0) for word in vocab_list]
+        for sentence in sentences
+    ]
+    for _ in range(epochs):
+        errors = 0
+        random.shuffle(X_train)
+        for x, target in zip(X_train, labels):
+            prediction = perceptron.predict(x)
+            error = target - prediction
+            if error != 0:
+                update = lr * (2 * error)
+
+                # Update weights
+                for i in range(len(perceptron.weights)):
+                    perceptron.weights[i] += update * x[i]
+
+                perceptron.bias += update
+                errors += 1
+
+        if errors == 0:
+            break  # Stop early if no errors
+
+    # Save trained model
+    save_json_model(perceptron, file_path="perceptron_tfidf_model.json",
+                    extra={"idf": tfidf.idf, "vocab_list": vocab_list})
 
 
 def train_with_n_gram():
@@ -100,4 +143,4 @@ def train():
 
 
 if __name__ == "__main__":
-    train_with_n_gram()
+    train_with_tfidf()

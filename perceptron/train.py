@@ -1,10 +1,10 @@
 import random
 
 from data.dataloader import load_dataset
-from features.indexer import IndexerFeatureExtractor
-from features.n_gram_feature_extractor import NGramFeatureExtractor
-from features.one_hot_encoding import OneHotEncodingFeatureExtractor
-from features.tfidf import TFIDF
+from features.bag_of_words.indexer import IndexerFeatureExtractor
+from features.bag_of_words.n_gram_feature_extractor import NGramFeatureExtractor
+from features.bag_of_words.one_hot_encoding import OneHotEncodingFeatureExtractor
+from features.bag_of_words.tfidf import TFIDF
 from perceptron import Perceptron
 from utils.model_io import save_json_model
 

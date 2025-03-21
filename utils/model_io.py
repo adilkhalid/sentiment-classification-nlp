@@ -5,7 +5,9 @@ import pickle
 import numpy as np
 
 from MLP import MLP
+from RNN.pretrained.rnn import RNNPreTrained
 from features.word_embeddings.word_2_vec import Word2Vec
+from lstm import LSTM
 
 
 def save_json_model(model, file_path="perceptron_model.json", extra=None):
@@ -143,4 +145,102 @@ def load_mlp_model(file_prefix="mlp_model"):
 
     print(f"Model loaded from {file_prefix}")
 
+    return model
+
+
+def save_rnn_model(model, file_prefix="rnn_model"):
+    """
+    Saves the trained RNN model.
+
+    Args:
+        model (RNNPreTrained): The trained RNN model.
+        file_prefix (str): Prefix for the saved files.
+    """
+    np.save(f"{file_prefix}_W_xh.npy", model.W_xh)
+    np.save(f"{file_prefix}_W_hh.npy", model.W_hh)
+    np.save(f"{file_prefix}_W_hy.npy", model.W_hy)
+    np.save(f"{file_prefix}_b_h.npy", model.b_h)
+    np.save(f"{file_prefix}_b_y.npy", model.b_y)
+
+    metadata = {
+        "input_dim": model.input_dim,
+        "hidden_dim": model.hidden_dim
+    }
+
+    with open(f"{file_prefix}_metadata.pkl", "wb") as f:
+        pickle.dump(metadata, f)
+
+    print(f"Model saved successfully as {file_prefix}_*.npy and {file_prefix}_metadata.pkl")
+
+def load_rnn_model(file_prefix="rnn_model"):
+    """
+    Loads a trained RNN model.
+
+    Args:
+        file_prefix (str): Prefix of the saved files.
+
+    Returns:
+        RNNPreTrained: The loaded RNN model.
+    """
+    with open(f"{file_prefix}_metadata.pkl", "rb") as f:
+        metadata = pickle.load(f)
+
+    model = RNNPreTrained(input_dim=metadata["input_dim"], hidden_dim=metadata["hidden_dim"])
+
+    model.W_xh = np.load(f"{file_prefix}_W_xh.npy")
+    model.W_hh = np.load(f"{file_prefix}_W_hh.npy")
+    model.W_hy = np.load(f"{file_prefix}_W_hy.npy")
+    model.b_h = np.load(f"{file_prefix}_b_h.npy")
+    model.b_y = np.load(f"{file_prefix}_b_y.npy")
+
+    print(f"Model loaded successfully from {file_prefix}")
+
+    return model
+
+
+def save_lstm_model(model: LSTM, file_prefix="lstm_model"):
+    np.save(f"{file_prefix}_W_f.npy", model.W_f)
+    np.save(f"{file_prefix}_W_i.npy", model.W_i)
+    np.save(f"{file_prefix}_W_c.npy", model.W_C)
+    np.save(f"{file_prefix}_W_o.npy", model.W_o)
+
+    np.save(f"{file_prefix}_b_f.npy", model.b_f)
+    np.save(f"{file_prefix}_b_i.npy", model.b_i)
+    np.save(f"{file_prefix}_b_c.npy", model.b_C)
+    np.save(f"{file_prefix}_b_o.npy", model.b_o)
+
+    np.save(f"{file_prefix}_W_hy.npy", model.W_hy)
+    np.save(f"{file_prefix}_b_y.npy", model.b_y)
+
+    metadata = {
+        "input_dim": model.input_dim,
+        "hidden_dim": model.hidden_dim
+    }
+    with open(f"{file_prefix}_metadata.pkl", "wb") as f:
+        pickle.dump(metadata, f)
+
+    print(f"LSTM model saved under prefix '{file_prefix}'")
+
+
+def load_lstm_model(file_prefix="lstm_model") -> LSTM:
+    with open(f"{file_prefix}_metadata.pkl", "rb") as f:
+        metadata = pickle.load(f)
+
+    model = LSTM(input_dim=metadata["input_dim"], hidden_dim=metadata["hidden_dim"])
+
+    model.W_f = np.load(f"{file_prefix}_W_f.npy")
+    model.W_i = np.load(f"{file_prefix}_W_i.npy")
+    model.W_c = np.load(f"{file_prefix}_W_c.npy")
+    model.W_o = np.load(f"{file_prefix}_W_o.npy")
+
+
+    model.b_f = np.load(f"{file_prefix}_b_f.npy")
+    model.b_i = np.load(f"{file_prefix}_b_i.npy")
+    model.b_c = np.load(f"{file_prefix}_b_c.npy")
+    model.b_o = np.load(f"{file_prefix}_b_o.npy")
+
+    model.W_hy = np.load(f"{file_prefix}_W_hy.npy")
+    model.b_y = np.load(f"{file_prefix}_b_y.npy")
+
+    print(f"LSTM model loaded from '{file_prefix}'")
     return model

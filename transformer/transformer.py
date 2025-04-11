@@ -52,16 +52,6 @@ class TransformerBlock:
         return self.layer_norm(x + ff_out)  # Residual + Norm
 
 
-class TransformerEncoder:
-    def __init__(self, num_layers, embed_dim, ff_hidden_dim):
-        self.layers = [TransformerBlock(embed_dim, ff_hidden_dim) for _ in range(num_layers)]
-
-    def forward(self, x):
-        for layer in self.layers:
-            x = layer.forward(x)
-        return x
-
-
 class Transformer:
     def __init__(self, vocab_size, max_len, embed_dim, ff_hidden_dim=128, num_layers=1):
         self.token_embedding = np.random.randn(vocab_size, embed_dim) * 0.01

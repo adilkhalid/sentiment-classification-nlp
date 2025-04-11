@@ -7,7 +7,9 @@ import numpy as np
 from MLP import MLP
 from RNN.pretrained.rnn import RNNPreTrained
 from features.word_embeddings.word_2_vec import Word2Vec
-from lstm import LSTM
+from lstm.lstm import LSTM
+from TransformerClassifier import TransformerClassifier
+from transformer import Transformer
 
 
 def save_json_model(model, file_path="perceptron_model.json", extra=None):
@@ -172,6 +174,7 @@ def save_rnn_model(model, file_prefix="rnn_model"):
 
     print(f"Model saved successfully as {file_prefix}_*.npy and {file_prefix}_metadata.pkl")
 
+
 def load_rnn_model(file_prefix="rnn_model"):
     """
     Loads a trained RNN model.
@@ -233,7 +236,6 @@ def load_lstm_model(file_prefix="lstm_model") -> LSTM:
     model.W_c = np.load(f"{file_prefix}_W_c.npy")
     model.W_o = np.load(f"{file_prefix}_W_o.npy")
 
-
     model.b_f = np.load(f"{file_prefix}_b_f.npy")
     model.b_i = np.load(f"{file_prefix}_b_i.npy")
     model.b_c = np.load(f"{file_prefix}_b_c.npy")
@@ -244,3 +246,34 @@ def load_lstm_model(file_prefix="lstm_model") -> LSTM:
 
     print(f"LSTM model loaded from '{file_prefix}'")
     return model
+
+
+def save_transformer_model(transformer, classifier, word_to_index):
+    np.save("transformer_token_embedding.npy", transformer.token_embedding)
+    np.save("transformer_position_embedding.npy", transformer.position_embedding)
+    np.save("transformer_output_weights.npy", classifier.output_weights)
+    np.save("transformer_output_bias.npy", classifier.output_bias)
+
+    with open("transformer_metadata.pkl", "wb") as f:
+        pickle.dump({"word_to_index": word_to_index}, f)
+
+
+def load_transformer_model():
+    token_embedding = np.load("transformer_token_embedding.npy")
+    position_embedding = np.load("transformer_position_embedding.npy")
+    output_weights = np.load("transformer_output_weights.npy")
+    output_bias = np.load("transformer_output_bias.npy")
+
+    with open("transformer_metadata.pkl", "rb") as f:
+        metadata = pickle.load(f)
+
+    return {
+        "token_embedding": token_embedding,
+        "position_embedding": position_embedding,
+        "output_weights": output_weights,
+        "output_bias": output_bias,
+        "word_to_idx": metadata["word_to_index"],  # consistent with save func
+        "embed_dim": token_embedding.shape[1],
+        "max_len": position_embedding.shape[0],
+        "vocab_size": token_embedding.shape[0]
+    }

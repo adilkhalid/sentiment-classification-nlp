@@ -16,14 +16,14 @@ env/
 .vscode/
 .idea/
 *.sublime-workspace
-
+w
 # Logs and debug files
 logs/
 *.log
 debug.log
 
 # Data files (prevent committing datasets)
-dataset/
+data/
 *.csv
 *.json
 *.xlsx

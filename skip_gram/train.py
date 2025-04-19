@@ -1,7 +1,7 @@
 import numpy as np
 
 from data.dataloader import load_dataset
-from features.word_embeddings.word_2_vec import Word2Vec
+from feature_extractors.word_embeddings.word_2_vec import Word2Vec
 from skip_gram.SkipGram import SkipGram
 from utils.model_io import save_word2vec_model
 

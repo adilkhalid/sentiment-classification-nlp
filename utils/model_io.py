@@ -6,7 +6,7 @@ import numpy as np
 
 from MLP import MLP
 from RNN.pretrained.rnn import RNNPreTrained
-from features.word_embeddings.word_2_vec import Word2Vec
+from feature_extractors.word_embeddings.word_2_vec import Word2Vec
 from lstm.lstm import LSTM
 from TransformerClassifier import TransformerClassifier
 from transformer import Transformer

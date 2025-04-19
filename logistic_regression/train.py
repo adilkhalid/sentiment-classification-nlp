@@ -1,7 +1,7 @@
 import numpy as np
 
 from data.dataloader import load_dataset
-from features.bag_of_words.n_gram_feature_extractor import NGramFeatureExtractor
+from feature_extractors.bag_of_words.n_gram_feature_extractor import NGramFeatureExtractor
 from logistic_regression import LogisticRegression
 from utils.model_io import save_model_npz
 

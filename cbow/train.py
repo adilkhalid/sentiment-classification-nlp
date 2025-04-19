@@ -7,7 +7,7 @@ from utils.model_io import save_json_model, save_word2vec_model
 
 
 def train():
-    dataset = load_dataset("../data/test.csv")
+    dataset = load_dataset("../dataset/test.csv")
     word2vec = Word2Vec()
     sentences = [sentence.split() for sentence, label in dataset]
     word2vec.build_vocabulary(sentences)

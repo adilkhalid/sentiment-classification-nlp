@@ -11,7 +11,7 @@ from utils.model_io import save_json_model
 
 def train_with_tfidf():
     tfidf = TFIDF()
-    dataset = load_dataset("../data/train.csv")
+    dataset = load_dataset("../dataset/train.csv")
 
     sentences = [sentence.split() for sentence, _ in dataset]
     labels = [label for _, label in dataset]
@@ -51,7 +51,7 @@ def train_with_tfidf():
 
 def train_with_n_gram():
     n_gram_extractor = NGramFeatureExtractor()
-    dataset = load_dataset("../data/train.csv")
+    dataset = load_dataset("../dataset/train.csv")
 
     for sentence, label in dataset:
         n_gram_extractor.add_to_vocab(sentence.split())
@@ -83,7 +83,7 @@ def train_with_n_gram():
 
 def train_with_indexer():
     indexer = IndexerFeatureExtractor()
-    dataset = load_dataset("../data/train.csv")
+    dataset = load_dataset("../dataset/train.csv")
 
     for sentence, label in dataset:
         indexer.add_to_indexer(sentence.split())
@@ -114,7 +114,7 @@ def train_with_indexer():
 
 def train():
     oneHotEncoding = OneHotEncodingFeatureExtractor()
-    dataset = load_dataset("../data/train.csv")
+    dataset = load_dataset("../dataset/train.csv")
 
     for sentence, label in dataset:
         oneHotEncoding.add_to_vocab(sentence.split())

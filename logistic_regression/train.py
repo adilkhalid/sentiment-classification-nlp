@@ -7,7 +7,7 @@ from utils.model_io import save_model_npz
 
 
 def train_model():
-    dataset = load_dataset("../data/test.csv")
+    dataset = load_dataset("../dataset/test.csv")
     n_gram_extractor = NGramFeatureExtractor()
     sentences = [sentence.split() for sentence, _ in dataset]
     n_gram_extractor.build_vocab(sentences)

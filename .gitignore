@@ -23,7 +23,7 @@ logs/
 debug.log
 
 # Data files (prevent committing datasets)
-data/
+dataset/
 *.csv
 *.json
 *.xlsx

@@ -4,7 +4,7 @@ from utils.model_io import load_rnn_model, load_word2vec_model
 
 
 def test_rnn():
-    """Loads the trained RNN model and evaluates it on test data."""
+    """Loads the trained RNN model and evaluates it on test dataset."""
     # Load the trained RNN model
     rnn = load_rnn_model("rnn_model")
 
@@ -12,9 +12,9 @@ def test_rnn():
     word2vec = load_word2vec_model("../../cbow/cbow_model")
 
     # Load test dataset
-    dataset = load_dataset("../../data/test.csv")
+    dataset = load_dataset("../../dataset/test.csv")
 
-    # Iterate through test data
+    # Iterate through test dataset
     for sentence, label in dataset:
         # Convert words to Word2Vec vectors
         sentence_vectors = [word2vec.W1[word2vec.word_to_index.get(word, 0)] for word in sentence.split()]

@@ -32,7 +32,7 @@ def test():
     classifier.output_bias = model_data["output_bias"]
 
     # Load and run test
-    dataset = load_dataset("../data/test.csv")
+    dataset = load_dataset("../dataset/test.csv")
     for sentence, label in dataset:
         tokens = sentence.split()
         input_ids = [model_data["word_to_idx"].get(word, 0) for word in tokens]

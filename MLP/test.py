@@ -5,7 +5,7 @@ from utils.model_io import load_word2vec_model, load_mlp_model
 def test():
     word2vec = load_word2vec_model("mlp")
     mlp = load_mlp_model()
-    dataset = load_dataset('../data/test.csv')
+    dataset = load_dataset('../dataset/test.csv')
 
     correct_predictions = 0
     total_samples = len(dataset)

@@ -14,7 +14,7 @@ def test_perceptron():
     perceptron = Perceptron(vocab_size=len(model_data["weights"]))
     perceptron.weights = model_data["weights"]
     perceptron.bias = model_data["bias"]
-    dataset = load_dataset("../data/test.csv")
+    dataset = load_dataset("../dataset/test.csv")
     oneHotEncoding = OneHotEncodingFeatureExtractor()
     oneHotEncoding.vocabulary = model_data["vocabulary"]
 
@@ -30,7 +30,7 @@ def test_indexer_perceptron():
     perceptron = Perceptron(vocab_size=len(model_data["weights"]))
     perceptron.weights = model_data["weights"]
     perceptron.bias = model_data["bias"]
-    dataset = load_dataset("../data/test.csv")
+    dataset = load_dataset("../dataset/test.csv")
     indexer = IndexerFeatureExtractor()
     indexer.objs_to_ints = model_data["objs_to_ints"]
 
@@ -46,7 +46,7 @@ def test_tfidf_perceptron():
     perceptron = Perceptron(vocab_size=len(model_data["weights"]))
     perceptron.weights = model_data["weights"]
     perceptron.bias = model_data["bias"]
-    dataset = load_dataset("../data/test.csv")
+    dataset = load_dataset("../dataset/test.csv")
     tfidf = TFIDF()
     tfidf.idf = model_data["idf"]
     vocab_list = list(tfidf.idf.keys())  # Fixed word order
@@ -67,7 +67,7 @@ def test_ngram_perceptron():
     perceptron = Perceptron(vocab_size=len(model_data["weights"]))
     perceptron.weights = model_data["weights"]
     perceptron.bias = model_data["bias"]
-    dataset = load_dataset("../data/test.csv")
+    dataset = load_dataset("../dataset/test.csv")
     nGramFeatureExtractor = NGramFeatureExtractor()
     nGramFeatureExtractor.vocab_size = model_data["vocab_size"]
     nGramFeatureExtractor.n = model_data["n"]

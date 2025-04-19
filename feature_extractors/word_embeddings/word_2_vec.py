@@ -27,7 +27,7 @@ class Word2Vec:
 
     def generate_cbow_training_data(self, sentences: List[List[str]]) -> List[Tuple[List[int], int]]:
         """
-        Generates training data for CBOW and Skip-gram.
+        Generates training dataset for CBOW and Skip-gram.
         - mode="cbow": context words → target word
         - mode="skipgram": target word → context words
         """
@@ -52,7 +52,7 @@ class Word2Vec:
 
     def generate_skipgram_training_data(self, sentences: List[List[str]], window_size: int) -> List[Tuple[int, int]]:
         """
-        Generates training data for Skip-gram.
+        Generates training dataset for Skip-gram.
 
         Args:
             sentences (List[List[str]]): Tokenized sentences.

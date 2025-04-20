@@ -1,5 +1,7 @@
 import numpy as np
 
+from utils.functions import sigmoid
+
 
 class LSTM:
     def __init__(self, input_dim, hidden_dim):
@@ -47,9 +49,6 @@ class LSTM:
 
         # Compute final prediction
         logits = np.dot(self.W_hy, h_t) + self.b_y
-        y_pred = self.sigmoid(logits)
+        y_pred = sigmoid(logits)
 
         return y_pred, h_t, C_t
-
-    def sigmoid(self, x):
-        return 1 / (1 + np.exp(-x))

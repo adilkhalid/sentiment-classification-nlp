@@ -36,3 +36,20 @@
         <td>Randomly mask some tokens for training (MLM)</td>
     </tr>
 </table>
+
+## BERT Diagram (High Level)
+           Input
+             ↓
+     ┌─────────────────┐
+     │ Self-Attention  │
+     └─────────────────┘
+             ↓
+      Add & LayerNorm
+             ↓
+     ┌──────────────────────┐
+     │ Feedforward + ReLU   │
+     └──────────────────────┘
+             ↓
+      Add & LayerNorm
+             ↓
+           Output

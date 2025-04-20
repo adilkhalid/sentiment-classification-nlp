@@ -1,7 +1,7 @@
 import numpy as np
 import pickle
 
-from RNN.pretrained.rnn import RNNPreTrained
+from RNN.rnn import RNNPreTrained
 from data.dataloader import load_dataset
 from utils.model_io import load_word2vec_model, save_rnn_model
 

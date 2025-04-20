@@ -1,13 +1,13 @@
 import numpy as np
 
 from data.dataloader import load_dataset
-from features.bag_of_words.n_gram_feature_extractor import NGramFeatureExtractor
+from feature_extractors.bag_of_words.n_gram_feature_extractor import NGramFeatureExtractor
 from logistic_regression import LogisticRegression
 from utils.model_io import save_model_npz
 
 
 def train_model():
-    dataset = load_dataset("../data/test.csv")
+    dataset = load_dataset("../dataset/test.csv")
     n_gram_extractor = NGramFeatureExtractor()
     sentences = [sentence.split() for sentence, _ in dataset]
     n_gram_extractor.build_vocab(sentences)

@@ -1,14 +1,14 @@
 import numpy as np
 import pickle
 
-from RNN.pretrained.rnn import RNNPreTrained
+from RNN.rnn import RNNPreTrained
 from data.dataloader import load_dataset
 from utils.model_io import load_word2vec_model, save_rnn_model
 
 
 class RNNTrainer:
     def __init__(self, word2vec, hidden_dim=16, epochs=50, lr=0.001):
-        self.dataset = load_dataset("../../data/train.csv")
+        self.dataset = load_dataset("../../dataset/train.csv")
         self.epochs = epochs
         self.lr = lr
         self.word2vec = word2vec  # Pretrained Word2Vec model

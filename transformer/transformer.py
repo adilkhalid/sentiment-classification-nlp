@@ -1,6 +1,6 @@
 import numpy as np
 
-from PositionalEncoding import get_positional_encoding
+from transformer.PositionalEncoding import get_positional_encoding
 
 
 def softmax(x):

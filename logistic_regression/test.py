@@ -2,7 +2,7 @@
 
 import ast
 from data.dataloader import load_dataset
-from features.n_gram_feature_extractor import NGramFeatureExtractor
+from feature_extractors.n_gram_feature_extractor import NGramFeatureExtractor
 from logistic_regression import LogisticRegression
 from utils.model_io import load_model_npz
 
@@ -20,7 +20,7 @@ def test_logistic_regression():
     logistic_regression.bias = model_data["bias"]
 
     # Load test dataset
-    dataset = load_dataset("../data/test.csv")
+    dataset = load_dataset("../dataset/test.csv")
 
     # Load feature extractor details
     extractor_data = model_data["extra"]

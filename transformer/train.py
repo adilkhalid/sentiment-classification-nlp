@@ -6,7 +6,7 @@ from utils.model_io import save_transformer_model
 
 
 def train():
-    dataset = load_dataset("../data/train.csv")
+    dataset = load_dataset("../dataset/train.csv")
     sentences = [s.split() for s, _ in dataset]
     labels = [label for _, label in dataset]
 

@@ -7,7 +7,7 @@ from utils.model_io import load_word2vec_model
 
 def test():
     word2vec = load_word2vec_model("skipgram")
-    dataset = load_dataset('../data/test.csv')
+    dataset = load_dataset('../dataset/test.csv')
     skipgram = SkipGram(word2vec)
 
     for sentence, label in dataset:

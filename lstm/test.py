@@ -10,7 +10,7 @@ def test_lstm():
     lstm = load_lstm_model("lstm_model")
 
     # Load test dataset
-    dataset = load_dataset("../data/test.csv")
+    dataset = load_dataset("../dataset/test.csv")
 
     correct = 0
     total = 0

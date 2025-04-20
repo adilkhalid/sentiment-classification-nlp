@@ -1,6 +1,6 @@
 import numpy as np
 
-from features.word_embeddings.word_2_vec import Word2Vec
+from feature_extractors.word_embeddings.word_2_vec import Word2Vec
 
 
 class SkipGram:

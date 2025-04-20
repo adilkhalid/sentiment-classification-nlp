@@ -23,6 +23,3 @@ class CBOW:
         y_pred = np.exp(u) / np.sum(np.exp(u))  # Softmax activation
 
         return y_pred  # Probabilities for each word in vocabulary
-
-
-

@@ -6,7 +6,7 @@ from data.dataloader import load_dataset
 
 class RNNTrainer:
     def __init__(self, epochs=50, lr=0.001):
-        self.dataset = load_dataset("../data/train.csv")
+        self.dataset = load_dataset("../dataset/train.csv")
         self.epochs = epochs
         self.lr = lr
         # Build vocab

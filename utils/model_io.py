@@ -6,10 +6,8 @@ import numpy as np
 
 from MLP import MLP
 from RNN.pretrained.rnn import RNNPreTrained
-from features.word_embeddings.word_2_vec import Word2Vec
+from feature_extractors.word_embeddings.word_2_vec import Word2Vec
 from lstm.lstm import LSTM
-from TransformerClassifier import TransformerClassifier
-from transformer import Transformer
 
 
 def save_json_model(model, file_path="perceptron_model.json", extra=None):
@@ -277,3 +275,16 @@ def load_transformer_model():
         "max_len": position_embedding.shape[0],
         "vocab_size": token_embedding.shape[0]
     }
+
+
+def save_sentiment_bert(model, tokenizer, sentiment_weights, sentiment_bias):
+    np.save("bert_token_embedding.npy", model.embedding.token_embedding)
+    np.save("bert_segment_embedding.npy", model.embedding.segment_embedding)
+    np.save("bert_position_embedding.npy", model.embedding.position_embedding)
+    np.save("bert_sentiment_weights.npy", sentiment_weights)
+    np.save("bert_sentiment_bias.npy", sentiment_bias)
+
+    with open("bert_vocab.pkl", "wb") as f:
+        pickle.dump(tokenizer.word_to_index, f)
+
+    print("✅ Sentiment BERT model saved!")

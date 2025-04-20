@@ -2,12 +2,12 @@ import numpy as np
 
 from cbow import CBOW
 from data.dataloader import load_dataset
-from features.word_embeddings.word_2_vec import Word2Vec
+from feature_extractors.word_embeddings.word_2_vec import Word2Vec
 from utils.model_io import save_json_model, save_word2vec_model
 
 
 def train():
-    dataset = load_dataset("../data/test.csv")
+    dataset = load_dataset("../dataset/test.csv")
     word2vec = Word2Vec()
     sentences = [sentence.split() for sentence, label in dataset]
     word2vec.build_vocabulary(sentences)
